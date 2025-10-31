@@ -2,7 +2,7 @@ from girder.settings import SettingDefault, SettingKey
 
 TCGACollectionSettingKey = 'tcga.tcga_collection_id'
 
-SettingDefault.defaults[SettingKey.BRAND_NAME] = 'HistomicsUI'
+SettingDefault.defaults[SettingKey.BRAND_NAME] = 'CDSI Slide Viewer'
 
 
 # Constants representing the setting keys for this plugin

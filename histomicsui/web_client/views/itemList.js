@@ -76,7 +76,7 @@ wrap(ItemListWidget, 'render', function (render) {
 });
 
 HuiSettings.getSettings().then((settings) => {
-    const brandName = (settings['histomicsui.brand_name'] || 'HistomicsUI');
+    const brandName = (settings['histomicsui.brand_name'] || 'CDSI Slide Viewer');
     const webrootPath = (settings['histomicsui.webroot_path'] || 'histomics');
 
     ItemListWidget.registeredApplications.histomicsui = {

@@ -237,7 +237,7 @@ class TestHUIEndpoints:
             assert utilities.respStatus(resp) == 200
             settings = resp.json
             assert settings[key] is None
-            assert settings[PluginSettings.HUI_BRAND_NAME] == 'HistomicsUI'
+            assert settings[PluginSettings.HUI_BRAND_NAME] == 'CDSI Slide Viewer'
 
             Setting().set(key, '')
             assert Setting().get(key) is None
@@ -268,7 +268,7 @@ class TestHUIEndpoints:
             'good': {'alternate1': 'alternate1'},
         }, {
             'key': PluginSettings.HUI_BRAND_NAME,
-            'initial': 'HistomicsUI',
+            'initial': 'CDSI Slide Viewer',
             'bad': {'': 'not be empty'},
             'good': {'Alternate': 'Alternate'},
         }, {

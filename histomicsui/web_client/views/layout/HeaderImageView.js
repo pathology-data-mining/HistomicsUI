@@ -48,7 +48,9 @@ var HeaderImageView = View.extend({
             previousImageLink,
             previousImageName: this._previousName,
             nextImageLink,
-            nextImageName: this._nextName
+            nextImageName: this._nextName,
+            currentIndex: this._currentIndex,
+            totalCount: this._totalCount
         }));
         return this;
     },
@@ -59,24 +61,23 @@ var HeaderImageView = View.extend({
         if (!model) {
             this._nextImage = null;
             this._previousImage = null;
+            this._currentIndex = null;
+            this._totalCount = null;
             this.render();
             return;
         }
 
-        $.when(
-            restRequest({
-                url: `item/${model.id}/previous_image${folder}`
-            }).done((previous) => {
-                this._previousImage = (previous._id !== model.id) ? previous._id : null;
-                this._previousName = previous.name;
-            }),
-            restRequest({
-                url: `item/${model.id}/next_image${folder}`
-            }).done((next) => {
-                this._nextImage = (next._id !== model.id) ? next._id : null;
-                this._nextName = next.name;
-            })
-        ).done(() => this.render());
+        restRequest({
+            url: `item/${model.id}/adjacent_images${folder}`
+        }).done((result) => {
+            this._previousImage = (result.previous._id !== model.id) ? result.previous._id : null;
+            this._previousName = result.previous.name;
+            this._nextImage = (result.next._id !== model.id) ? result.next._id : null;
+            this._nextName = result.next.name;
+            this._currentIndex = result.index + 1; // Convert 0-based to 1-based
+            this._totalCount = result.count;
+            this.render();
+        });
     }
 });
 

@@ -21,6 +21,8 @@ if parentChain
       li
         span.g-item-breadcrumb-link(data-id=image.id, data-type='item')
           = image.name()
+          if currentIndex && totalCount
+            span.h-slide-counter  (#{currentIndex} of #{totalCount})
 button.btn.btn-default.navbar-btn.h-open-annotated-image(type='button')
   | #[span.icon-list] Annotated images...
 button.btn.btn-default.navbar-btn.h-open-image(type='button')

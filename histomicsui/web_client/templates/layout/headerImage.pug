@@ -8,25 +8,19 @@ if parentChain
       parts.push(image.name());
     ol.breadcrumb(title=parts.join('/'))
       each parent in parentChain
-        li
-          span.g-item-breadcrumb-link(data-id=parent.object._id, data-type=parent.type)
-            if (parent.type === "user")
-              i.icon-user
-              = parent.object.login
-            else if (parent.type === "collection")
-              i.icon-sitemap
-              = parent.object.name
-            else
-              = parent.object.name
+        if (parent.type !== "collection")
+          li
+            span.g-item-breadcrumb-link(data-id=parent.object._id, data-type=parent.type)
+              if (parent.type === "user")
+                i.icon-user
+                = parent.object.login
+              else
+                = parent.object.name
       li
         span.g-item-breadcrumb-link(data-id=image.id, data-type='item')
           = image.name()
           if currentIndex && totalCount
             span.h-slide-counter  (#{currentIndex} of #{totalCount})
-button.btn.btn-default.navbar-btn.h-open-annotated-image(type='button')
-  | #[span.icon-list] Annotated images...
-button.btn.btn-default.navbar-btn.h-open-image(type='button')
-  | #[span.icon-picture] Open image...
 
 -
   var titlePre = '', titleNext = '';
